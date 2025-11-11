@@ -9,9 +9,10 @@
     <!-- mystyle -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- alpine js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <!-- app -->
     <script src="src/app.js" async></script>
+
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,7 +36,9 @@
           <i data-feather="shopping-cart"></i>
           <span class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
         </a>
-        <a href="#" id="hamburger-menu"> </a>
+        <a href="#" id="hamburger-menu">
+          <i data-feather="menu"></i>
+        </a>
       </div>
       <!-- search start -->
       <div class="search-form">
@@ -91,7 +94,8 @@
     <section class="hero" id="home">
       <main class="content">
         <h1>Mari Nikmati Sepiring <span>Nasi Goreng</span></h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, quis.</p>
+        <p>Hangat, lezat, dan penuh cita rasa! Nasi Goreng kami dimasak langsung setelah dipesan, dengan bumbu khas yang bikin setiap suapan tak terlupakan.</p>
+
         <a href="#menu" class="cta">Beli Sekarang</a>
       </main>
     </section>
@@ -105,18 +109,19 @@
         </div>
         <div class="content">
           <h3>Kenapa harus Nasi Goreng Gila Farel</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam beatae dignissimos labore maxime minus accusantium!</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam magni saepe voluptatum, unde excepturi omnis pariatur aliquam voluptas delectus numquam?</p>
-        </div>
+          <p>Nasi Goreng Gila Farel dibuat dari bahan-bahan segar pilihan dengan bumbu khas yang diracik langsung oleh koki berpengalaman. Setiap porsinya menghadirkan rasa gurih pedas yang menggugah selera dan bikin nagih.</p>
+          <p>Kami selalu mengutamakan kualitas dan kebersihan, sehingga pelanggan bisa menikmati hidangan lezat dengan rasa yang konsisten di setiap suapan. Nikmati pengalaman makan malam yang berbeda dengan cita rasa Nasi Goreng Gila Farel!</p>
       </div>
     </section>
     <!-- about section end -->
     <!-- menu section start -->
     <section class="menu" id="menu" x-data="products">
-      <h2><span>Menu</span> Kami</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, qui!</p>
+     <h2><span>Menu</span> Kami</h2>
+      <p>Pilih berbagai menu favorit dengan cita rasa istimewa, dimasak dari bahan segar dan bumbu pilihan setiap harinya.</p>
+
       <div class="row">
-        <template x-for="(item,index) in items" x-key="index">
+        <!-- <template x-for="(item,index) in items.slice(0, limit)" x-key="index"> -->
+        <template x-for="item in visibleItems" :key="item.id">
           <div class="menu-card">
             <div class="menu-icons">
               <a href="#" @click.prevent="$store.cart.add(item)"
@@ -124,7 +129,7 @@
                   <use href="img/feather-sprite.svg#shopping-cart" /></svg
               ></a>
 
-              <a href="#" class="detail-button"
+              <a href="#" class="detail-button" @click.prevent="$store.productModal.open(item)"
                 ><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <use href="img/feather-sprite.svg#eye" /></svg
               ></a>
@@ -158,12 +163,19 @@
           </div>
         </template>
       </div>
+      <!-- Tombol Show More / Show Less -->
+      <div class="tombol">
+        <button @click="toggleShow()" class="tombol-show">
+          <span x-text="showAll ? 'Show Less...' : 'Show More...'"></span>
+        </button>
+      </div>
     </section>
+
     <!-- menu section end -->
     <!-- contact section start -->
     <section class="contact" id="contact">
       <h2><span>Kontak</span> Kami</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, ullam.</p>
+      <p>Hubungi kami untuk pemesanan, pertanyaan, atau saran. Kami siap melayani Anda setiap saat!</p>
       <div class="row">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d700.8744331488575!2d106.73082962750412!3d-6.42686081927115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e93362e1b623%3A0x9eec32a4f182bc9b!2sNasi%20goreng%20gila%20Farel!5e0!3m2!1sid!2sid!4v1701637462129!5m2!1sid!2sid"
@@ -172,18 +184,22 @@
           referrerpolicy="no-referrer-when-downgrade"
           class="map"
         ></iframe>
-        <form action="">
+        <form action="" id="contactForm">
           <div class="input-group">
-            <i class="fa-regular fa-user fa-2xl"></i>
-            <input type="text" placeholder="nama" />
+            <i data-feather="user"></i>
+            <input type="text" placeholder="nama" id="nama"/>
           </div>
           <div class="input-group">
-            <i class="fa-regular fa-envelope fa-2xl"></i>
-            <input type="text" placeholder="email" />
+            <i data-feather="mail"></i>
+            <input type="email" placeholder="email" id="email"/>
           </div>
           <div class="input-group">
-            <i class="fa-solid fa-phone fa-2xl"></i>
-            <input type="text" placeholder="no HP" />
+            <i data-feather="phone"></i>
+            <input type="number" placeholder="no HP" id="nomor"/>
+          </div>
+          <div class="input-group">
+            <i data-feather="send"></i>
+            <textarea id="message" name="message" placeholder="Tulis pesan kamu..." required></textarea>
           </div>
           <button type="submit" class="btn">Kirim Pesan</button>
         </form>
@@ -193,9 +209,9 @@
     <!-- footer section start-->
     <footer>
       <div class="socials">
-        <a href="#"><i class="fa-brands fa-instagram fa-2xl"></i></a>
-        <a href="#"><i class="fa-brands fa-twitter fa-2xl"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook fa-2xl"></i></a>
+        <a href="#"><i data-feather="instagram"></i></a>
+        <a href="#"><i data-feather="message-circle"></i></a>
+        <a href="#"><i data-feather="facebook"></i></a>
       </div>
       <div class="links">
         <a href="#home">Home</a>
@@ -208,33 +224,29 @@
       </div>
     </footer>
     <!-- footer section end-->
-    <!-- modal box menu -->
-    <div class="modal-menu" id="item-detail-modal">
-      <div class="modal-menu-container">
-        <div class="menu-image">
-          <img src="img/menu/mie.jpg" alt="" />
-        </div>
-        <div class="menu-detail">
-          <a href="#" class="close-menu-detail"><i class="fa-solid fa-xmark fa-2xl"></i></a>
-          <h3>Produk 1</h3>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, placeat asperiores culpa nam officiis vero. Nesciunt fugiat doloremque sed cum pariatur nulla reprehenderit illum nam?</p>
-          <div class="menu-stars">
-            <i data-feather="star" class="star-full"></i>
-            <i data-feather="star" class="star-full"></i>
-            <i data-feather="star" class="star-full"></i>
-            <i data-feather="star" class="star-full"></i>
-            <i data-feather="star"></i>
+
+    <!-- Modal box items detail start-->
+    <div class="modal" id="item-detail-modal" x-data x-show="$store.productModal.show" @click.self="$store.productModal.close()">
+      <div class="modal-container">
+        <a href="#" class="close-icon" @click.prevent="$store.productModal.close()"><i data-feather="x"></i></a>
+        <div class="modal-content">
+          <img :src="`img/menu/${$store.productModal.selectedItem.img}`" :alt="$store.productModal.selectedItem.name" />
+          <div class="product-content">
+            <h3 x-text="$store.productModal.selectedItem.name"></h3>
+            <p x-text="$store.productModal.selectedItem.deskripsi"></p>
+            <div class="product-price" x-text="rupiah($store.productModal.selectedItem.price)"></div>
+            <a href="#" @click.prevent="$store.cart.add($store.productModal.selectedItem); $store.productModal.close()"><i data-feather="shopping-cart"></i> tambah ke Keranjang<span></span></a>
           </div>
-          <div class="menu-price">IDR 15K</div>
-          <a href="#"><i data-feather="shopping-cart"></i> <span>add to cart</span></a>
         </div>
       </div>
     </div>
+
     <!-- modal end -->
     <!-- Feather icons -->
     <script>
       feather.replace();
     </script>
+
     <script src="js/script.js"></script>
   </body>
 </html>

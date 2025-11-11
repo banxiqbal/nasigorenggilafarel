@@ -332,6 +332,8 @@ body {
   justify-content: center;
 }
 .menu .row .menu-card {
+  min-width: 20rem;
+  max-width: 20rem;
   text-align: center;
   padding-bottom: 4rem;
   border: 1px solid #666;
@@ -377,6 +379,22 @@ body {
   font-weight: bold;
 }
 
+.menu .tombol {
+  display: flex;
+  justify-content: center;
+}
+.menu .tombol-show {
+  margin-top: 2rem;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  background-color: var(--primary);
+  color: white;
+}
+.menu .tombol-show:hover {
+  background-color: #666;
+}
+
 /* contact section */
 .contact .row {
   margin-top: 2rem;
@@ -401,7 +419,8 @@ body {
   border: solid 1px #eee;
   padding-left: 2rem;
 }
-.contact .row form .input-group input {
+.contact .row form .input-group input,
+.contact .row form .input-group textarea {
   width: 100%;
   padding: 2rem;
   font-size: 1.7rem;
@@ -451,20 +470,29 @@ footer .credit a {
   font-weight: 700;
 }
 /* modal menu */
-.modal-menu {
-  display: none;
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 100%;
-  height: 100%;
+.modal {
+  /* display: none; */
   position: fixed;
+  z-index: 9999;
   left: 0;
   top: 0;
-  z-index: 9999;
+  width: 100%;
+  height: 100%;
   overflow: auto;
-  align-items: center;
-  animation: animasiModal 0.5s;
+  background-color: rgba(0, 0, 0, 0.7);
 }
-@keyframes animasiModal {
+.modal-container {
+  position: relative;
+  background-color: #fefefe;
+  color: var(--bg);
+  margin: 15% auto;
+  padding: 1.2rem;
+  border: 1px solid #666;
+  width: 80%;
+  animation: animateModal 0.5s;
+}
+/* modal animation */
+@keyframes animateModal {
   from {
     top: -300px;
     opacity: 0;
@@ -474,51 +502,32 @@ footer .credit a {
     opacity: 1;
   }
 }
-.modal-menu .modal-menu-container {
-  display: flex;
-  background-color: #fefefe;
-  position: relative;
-  margin: 15% auto;
-  border: 1px solid #f2e3e3;
-  width: 80%;
-  padding: 2rem;
-  color: var(--bg);
-}
-.modal-menu .modal-menu-container img {
-  height: 16rem;
-}
-.modal-menu .modal-menu-container .close-menu-detail {
+.modal-container .close-icon {
   position: absolute;
-  top: 1rem;
   right: 1rem;
 }
-.modal-menu .modal-menu-container .menu-detail {
-  margin-left: 2rem;
+.modal-content {
+  display: flex;
+  flex-wrap: nowrap;
 }
-.modal-menu .modal-menu-container .menu-detail h3 {
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.modal-content img {
+  height: 16rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
 }
-.modal-menu .modal-menu-container .menu-detail p {
+.modal-content p {
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  line-height: 1.8rem;
+  margin-top: 1.2rem;
 }
-.modal-menu .modal-menu-container .menu-detail .menu-stars {
-  margin-bottom: 0.5rem;
-}
-.modal-menu .modal-menu-container .menu-detail .menu-price {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-.modal-menu .modal-menu-container .menu-detail .addCart {
-  display: inline-block;
-  padding: 1rem 3rem;
+.modal-content a {
+  display: flex;
+  gap: 1rem;
+  width: 12rem;
   background-color: var(--primary);
-  color: white;
-}
-.modal-menu .modal-menu-container .menu-detail .addCart:hover {
-  background-color: var(--bg);
+  color: #fff;
+  margin-top: 1rem;
+  padding: 1rem 1.6rem;
 }
 
 /* media query untuk responsive web */
@@ -578,9 +587,48 @@ footer .credit a {
   .about .row .content {
     padding: 0;
   }
-  /* menu */
-  .menu p {
+  menu .menu p {
     font-size: 1.4rem;
+  }
+  .menu {
+    width: 100%;
+  }
+  .menu .row .menu-card {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2rem;
+  }
+  .menu .row .menu-card .menu-icons a {
+    margin-top: 1rem;
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.2rem;
+  }
+  .menu .row .menu-card .menu-icons a svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  .menu .row .menu-card img {
+    margin-bottom: 0.2rem;
+    border-radius: 50%;
+    height: 9rem;
+    width: 9rem;
+  }
+  .menu .row .menu-card .menu-content h3 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  .menu .row .menu-card .menu-stars svg {
+    width: 1rem;
+  }
+
+  .menu .row .menu-card .menu-price {
+    font-size: 0.6rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
   }
   /* contact */
   .contact h2 {
@@ -595,18 +643,37 @@ footer .credit a {
   .contact .row form {
     padding-top: 0;
   }
-  /* modal menu */
-  .modal-menu-container {
+  .modal-container {
+    padding: 0rem;
+  }
+  .modal-container .close-icon {
+    position: absolute;
+    right: 0.1rem;
+  }
+  .modal-content {
+    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
-  .modal-menu .modal-menu-container img {
-    margin-left: 2rem;
-    width: 36rem;
-    height: 30rem;
+
+  .modal-content img {
+    width: 100%;
   }
-  .modal-menu .modal-menu-container .close-menu-detail {
-    top: 0.5rem;
-    right: 0.5rem;
+  .modal-content h3 {
+    text-align: center;
+  }
+  .modal-content a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .modal-content .product-price {
+    color: black;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.6rem;
   }
 }
 /* hp */
