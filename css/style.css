@@ -332,7 +332,7 @@ body {
   justify-content: center;
 }
 .menu .row .menu-card {
-  min-width: 20rem;
+  /* min-width: 20rem; */
   max-width: 20rem;
   text-align: center;
   padding-bottom: 4rem;
@@ -538,7 +538,7 @@ footer .credit a {
   }
 }
 /* tablet */
-@media (max-width: 758px) {
+@media (max-width: 768px) {
   html {
     font-size: 62.5%;
   }
@@ -587,98 +587,126 @@ footer .credit a {
   .about .row .content {
     padding: 0;
   }
-  menu .menu p {
-    font-size: 1.4rem;
+
+  /* menu */
+  /* untuk semua ukuran layar kecil hingga hp */
+  @media (max-width: 768px) {
+    .menu .row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+      gap: 1rem; /* jarak antar card */
+      justify-items: center;
+    }
+
+    .menu .row .menu-card {
+      width: 100%;
+      max-width: 18rem;
+      padding: 1.5rem;
+    }
+
+    .menu .row .menu-card img {
+      width: 10rem;
+      height: 10rem;
+    }
+
+    .menu .row .menu-card .menu-content h3 {
+      font-size: 1.2rem;
+    }
+
+    .menu .row .menu-card .menu-price {
+      font-size: 1rem;
+    }
   }
-  .menu {
-    width: 100%;
+}
+
+/* contact */
+.contact h2 {
+  margin-bottom: 1rem;
+}
+.contact .row {
+  flex-wrap: wrap;
+}
+.contact .row .map {
+  height: 30rem;
+}
+.contact .row form {
+  padding-top: 0;
+}
+.modal-container {
+  padding: 0rem;
+}
+.modal-container .close-icon {
+  position: absolute;
+  right: 0.1rem;
+}
+.modal-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content img {
+  width: 100%;
+}
+.modal-content h3 {
+  text-align: center;
+}
+.modal-content a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.modal-content .product-price {
+  color: black;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+/* hp */
+@media (max-width: 480px) {
+  html {
+    font-size: 55%;
   }
+  /* untuk hp kecil banget (misalnya <480px) tetap 2 kolom tapi ukuran card lebih kecil */
+
+  .menu .row {
+    padding: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
   .menu .row .menu-card {
-    width: 40%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0.2rem;
+    max-width: 15rem;
+    padding: 1rem;
   }
-  .menu .row .menu-card .menu-icons a {
-    margin-top: 1rem;
+  .menu .row .menu-icons,
+  .row .menu-image,
+  .row .menu-content,
+  .row .menu-price {
+    max-width: 12rem;
+  }
+  .menu .row .menu-card .menu-icons svg {
     width: 2rem;
     height: 2rem;
-    margin-bottom: 0.2rem;
   }
-  .menu .row .menu-card .menu-icons a svg {
-    width: 1rem;
-    height: 1rem;
-  }
+
   .menu .row .menu-card img {
-    margin-bottom: 0.2rem;
-    border-radius: 50%;
-    height: 9rem;
-    width: 9rem;
+    width: 10rem;
+    height: 10rem;
   }
+
   .menu .row .menu-card .menu-content h3 {
     font-size: 1rem;
-    margin-bottom: 0.2rem;
   }
-  .menu .row .menu-card .menu-stars svg {
-    width: 1rem;
+  .menu .row .menu-card .menu-content .menu-stars svg {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   .menu .row .menu-card .menu-price {
-    font-size: 0.6rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  /* contact */
-  .contact h2 {
-    margin-bottom: 1rem;
-  }
-  .contact .row {
-    flex-wrap: wrap;
-  }
-  .contact .row .map {
-    height: 30rem;
-  }
-  .contact .row form {
-    padding-top: 0;
-  }
-  .modal-container {
-    padding: 0rem;
-  }
-  .modal-container .close-icon {
-    position: absolute;
-    right: 0.1rem;
-  }
-  .modal-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modal-content img {
-    width: 100%;
-  }
-  .modal-content h3 {
-    text-align: center;
-  }
-  .modal-content a {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  .modal-content .product-price {
-    color: black;
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.6rem;
-  }
-}
-/* hp */
-@media (max-width: 550px) {
-  html {
-    font-size: 55%;
+    font-size: 0.9rem;
   }
 }
