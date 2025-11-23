@@ -1,13 +1,6 @@
-// const rupiah = (number) => {
-//   return new Intl.NumberFormat("id-ID", {
-//     style: "currency",
-//     currency: "IDR",
-//     minimumFractionDigits: 0,
-//   }).format(number);
-// };
-
 document.addEventListener("alpine:init", () => {
   Alpine.data("products", () => ({
+    search: "",
     limit: 6,
     showAll: false,
     items: [
@@ -70,7 +63,8 @@ document.addEventListener("alpine:init", () => {
     toggleShow() {
       this.showAll = !this.showAll;
     },
-  })); //keranjang
+  }));
+  //keranjang
   Alpine.store("cart", {
     items: [],
     total: 0,

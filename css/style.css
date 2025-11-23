@@ -509,10 +509,13 @@ footer .credit a {
 .modal-content {
   display: flex;
   flex-wrap: nowrap;
+  gap: 1rem;
+}
+.modal-content h3 {
+  font-size: 2rem;
 }
 .modal-content img {
-  height: 16rem;
-  margin-right: 2rem;
+  width: 350px;
   margin-bottom: 2rem;
 }
 .modal-content p {
@@ -588,34 +591,30 @@ footer .credit a {
     padding: 0;
   }
 
-  /* menu */
-  /* untuk semua ukuran layar kecil hingga hp */
-  @media (max-width: 768px) {
-    .menu .row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 2 kolom */
-      gap: 1rem; /* jarak antar card */
-      justify-items: center;
-    }
+  .menu .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 1rem; /* jarak antar card */
+    justify-items: center;
+  }
 
-    .menu .row .menu-card {
-      width: 100%;
-      max-width: 18rem;
-      padding: 1.5rem;
-    }
+  .menu .row .menu-card {
+    width: 100%;
+    max-width: 18rem;
+    padding: 1.5rem;
+  }
 
-    .menu .row .menu-card img {
-      width: 10rem;
-      height: 10rem;
-    }
+  .menu .row .menu-card img {
+    width: 10rem;
+    height: 10rem;
+  }
 
-    .menu .row .menu-card .menu-content h3 {
-      font-size: 1.2rem;
-    }
+  .menu .row .menu-card .menu-content h3 {
+    font-size: 1.2rem;
+  }
 
-    .menu .row .menu-card .menu-price {
-      font-size: 1rem;
-    }
+  .menu .row .menu-card .menu-price {
+    font-size: 1rem;
   }
 }
 
@@ -632,22 +631,30 @@ footer .credit a {
 .contact .row form {
   padding-top: 0;
 }
+/* modal */
+
 .modal-container {
   padding: 0rem;
 }
 .modal-container .close-icon {
   position: absolute;
-  right: 0.1rem;
+  right: 0.2rem;
 }
 .modal-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .modal-content img {
-  width: 100%;
+  margin-top: 2rem;
+  max-width: 100%;
+  margin-right: 0;
+}
+.modal-content .product-content {
+  margin-left: 0;
 }
 .modal-content h3 {
   text-align: center;

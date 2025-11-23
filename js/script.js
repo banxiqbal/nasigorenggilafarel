@@ -4,7 +4,7 @@ const navbarNav = document.querySelector(".navbar-nav");
 document.querySelector("#hamburger-menu").onclick = () => {
   navbarNav.classList.toggle("active");
 };
-//ketika tombol search di klik
+// ketika tombol search di klik
 const searchForm = document.querySelector(".search-form");
 const searchBox = document.querySelector("#search-box");
 document.querySelector("#search-button").onclick = (e) => {
