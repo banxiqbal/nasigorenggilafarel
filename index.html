@@ -42,10 +42,12 @@
       </div>
       <!-- search start -->
       <div class="search-form">
-        <input type="search" id="search-box" placeholder="search here..." />
+        <input type="search" id="search-box" placeholder="Search menu..." />
         <label for="search-box">
-          <i id="search-button-form" data-feather="search"></i>
+          <i id="search-button-form"></i>
         </label>
+        <!-- Tambahkan container untuk hasil pencarian -->
+        <div class="search-results" id="search-results"></div>
       </div>
       <!-- search end -->
       <!-- shopping cart start -->
@@ -122,7 +124,7 @@
       <div class="row">
         <!-- <template x-for="(item,index) in items.slice(0, limit)" x-key="index"> -->
         <template x-for="item in visibleItems" :key="item.id">
-          <div class="menu-card" :id="'product-'+item.id">
+          <div class="menu-card" :id="'product-'+item.id" :data-id="item.id">
             <div class="menu-icons">
               <a href="#" @click.prevent="$store.cart.add(item)"
                 ><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
